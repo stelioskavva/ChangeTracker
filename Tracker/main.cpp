@@ -1,12 +1,12 @@
 #include <iostream>
 #include <filesystem>
 #include <string>
-#include <cctype>
 using namespace std;
 
-bool isNumber(const std::string str) {
+// Function to check if the input is a number.
+bool isNumber(const string& str) {
 	for (char c : str) {
-		if (!std::isdigit(c)) {
+		if (!isdigit(c)) {
 			return false;
 		}
 	}
@@ -14,19 +14,34 @@ bool isNumber(const std::string str) {
 }
 
 int main() {
-	string folderPath, input;
+	string programPath, input;
+	string newProgram = "addNewProgram";
+	int check = 0;
 
-	// Getting desired operation
+	// Getting desired operation.
 	cout << "Select program number to scan or enter 'addNewProgram' to add to the list.\n";
 	cin >> input;
-
+	
+	// Checking for invalid input.
+	while (true) {
+		if (isNumber(input) == true)
+			break;
+		else if (input.compare(newProgram) == 0)
+			break;
+		cout << "Invalid input.\n";
+		cout << "Select program number to scan or enter 'addNewProgram' to add to the list.\n";
+		cin >> input;
+	}
+	
 	// Check type of operation.
-	if (isNumber(input) == true) {
-		cout << "Starting scan for chosen directory...\n";
+	if (isNumber(input)) {
+		cout << "Starting scan for chosen program...\n";
 			return 0;
 	}
 	else if (input == "addNewProgram") {
-
+		cout << "Enter {program_name}, {path_to_program}\n"; 
+		cin >> newProgram;
 	}
 	
+	return 0;
 }
