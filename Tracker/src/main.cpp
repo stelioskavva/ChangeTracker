@@ -1,5 +1,4 @@
 #include <iostream>
-#include <filesystem>
 #include <string>
 using namespace std;
 
@@ -16,32 +15,30 @@ bool isNumber(const string& str) {
 int main() {
 	string programPath, input;
 	string newProgram = "addNewProgram";
-	int check = 0;
 
 	// Getting desired operation.
 	cout << "Select program number to scan or enter 'addNewProgram' to add to the list.\n";
 	cin >> input;
-	
+
 	// Checking for invalid input.
 	while (true) {
-		if (isNumber(input) == true)
+		if (isNumber(input) == true || input.compare(newProgram) == 0)
 			break;
-		else if (input.compare(newProgram) == 0)
-			break;
+
 		cout << "Invalid input.\n";
 		cout << "Select program number to scan or enter 'addNewProgram' to add to the list.\n";
 		cin >> input;
 	}
-	
+
 	// Check type of operation.
 	if (isNumber(input)) {
 		cout << "Starting scan for chosen program...\n";
-			return 0;
+		return 0;
 	}
 	else if (input == "addNewProgram") {
-		cout << "Enter {program_name}, {path_to_program}\n"; 
+		cout << "Enter {program_name}, {path_to_program}\n";
 		cin >> newProgram;
 	}
-	
+
 	return 0;
 }
